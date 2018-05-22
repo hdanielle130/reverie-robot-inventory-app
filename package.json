@@ -1,0 +1,28 @@
+{
+    "name": "reverie_inventory",
+    "version": "1.0.0",
+    "description": "Simple robot inventory app",
+    "main": "reverie-app.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "client-install": "cd client && npm install",
+        "start": "node server.js",
+        "server": "nodemon server.js",
+        "client": "npm start --prefix client",
+        "dev": "concurrently \"npm run server\" \"npm run client\""
+    },
+    "repository": {
+        "reverie-app": "https://github.com/hdanielle130/reverie-app.git"
+    },
+    "dependencies": {
+        "express": "*",
+        "body-parser": "*",
+        "mongoose": "*",
+        "concurrently": "*"
+    },
+    "devDependencies": {
+        "nodemon": "*"
+    },
+    "author": "Heather Terrell",
+    "license": "ISC"
+}
