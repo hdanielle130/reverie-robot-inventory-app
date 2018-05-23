@@ -31,7 +31,7 @@ class Hosts extends Component {
       </div>*/
         let hosts;
         if(this.props.hosts){
-          hosts = this.props.hosts.map(project => {
+          hosts = this.props.hosts.map(host => {
             //console.log(project);
             return (
               <Host onDelete={this.deleteProject.bind(this)} key={host.current_name} host={host} />
@@ -47,9 +47,9 @@ class Hosts extends Component {
   }
 }
 
-Hosts.propTypes = {
-  hosts: React.PropTypes.array,
-  onDelete: React.PropTypes.func
-}
+/*Hosts.propTypes = {
+  hosts: React.props.array,
+  onDelete: React.props.func
+}*/
 
 export default Hosts;

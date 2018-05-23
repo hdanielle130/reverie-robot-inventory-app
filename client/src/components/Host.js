@@ -8,16 +8,19 @@ class Host extends Component {
 
   render() {
     return (
-      <li className="Host">
-        <strong>{this.props.host.current_name}</strong> <a href="#" onClick={this.deleteHost.bind(this, this.props.project.id)}>X</a>
-      </li>
+      <div>
+        <li className="Host">
+            <strong>{this.props.host.current_name}</strong> 
+        </li>
+      </div>
     );
   }
 }
 
-Host.propTypes = {
-  host: React.PropTypes.object,
-  onDelete: React.PropTypes.func
-}
+/*Host.propTypes = {
+    project: React.PropTypes.object,
+    onDelete: React.PropTypes.func
+}*/
+/*<a href="#" onClick={this.deleteHost.bind(this, this.props.project.id)}>X</a>*/
 
 export default Host;

@@ -20,7 +20,7 @@ class AddHost extends Component {
     } else {
       this.setState({newHost:{
         id: uuid.v4(),
-        date_added: new Date.now,
+        date_added: new Date.now(),
         first_active: this.refs.first_active.value,
         current_name: this.refs.current_name.value,
         height: this.refs.height.value,
@@ -54,7 +54,7 @@ class AddHost extends Component {
             if(this.select == "Activate" && this.ref.first_active == ""){
                 
             }else if(this.select == "Activate"){
-                this.ref.first_active = new Date.now
+                this.ref.first_active = new Date.now()
             }else{
                 
             }
