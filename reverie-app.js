@@ -13,10 +13,10 @@ mongoose.connect('mongodb://localhost/robotinventory');
 var db = mongoose.connection;
 
 app.get('/', (req, res) => {
-    res.send('Please use /api/hosts');
+    res.send('Please use /reverie/hosts');
 });
 
-app.get('/api/hosts', (req, res) => {
+app.get('/reverie/hosts', (req, res) => {
     Host.getHosts((err, hosts) => {
         if (err) {
             throw err;
@@ -25,7 +25,7 @@ app.get('/api/hosts', (req, res) => {
     });
 });
 
-app.get('/api/hosts/:_id', (req, res) => {
+app.get('/reverie/hosts/:_id', (req, res) => {
     Host.getHostById(req.params._id, (err, host) => {
         if (err) {
             throw err;
@@ -34,17 +34,18 @@ app.get('/api/hosts/:_id', (req, res) => {
     });
 });
 
-app.post('/api/hosts', (req, res) => {
+app.post('/reverie/hosts', (req, res) => {
     var host = req.body;
     Host.addHost(host, (err, host) => {
         if (err) {
             throw err;
         }
+        db.collection.insert(res.json(host));
         res.json(host);
     });
 });
 
-app.put('/api/hosts/:_id', (req, res) => {
+app.put('/reverie/hosts/:_id', (req, res) => {
     var id = req.params._id;
     var host = req.body;
     Host.updateHost(id, host, {}, (err, host) => {
@@ -55,7 +56,7 @@ app.put('/api/hosts/:_id', (req, res) => {
     });
 });
 
-app.delete('/api/hosts/:_id', (req, res) => {
+app.delete('/reverie/hosts/:_id', (req, res) => {
     var id = req.params._id;
     Host.removeHost(id, (err, host) => {
         if (err) {

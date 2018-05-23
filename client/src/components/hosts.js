@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Host from './Host';
 import './hosts.css';
 
 class Hosts extends Component {
@@ -9,14 +10,17 @@ class Hosts extends Component {
     };
   }
 
+  deleteProject(id){
+    this.props.onDelete(id);
+  }
+
   componentDidMount() {
-    fetch('/api/hosts')
+    fetch('/reverie/hosts')
       .then(res => res.json())
       .then(hosts => this.setState({hosts}, () => console.log('Hosts fetched...', hosts)));
   }
-
   render() {
-    return (
+    /*return (
       <div>
         <h2>Reverie Hosts</h2>
         <ul>
@@ -24,9 +28,28 @@ class Hosts extends Component {
           <li key={host.id}>{host.current_name}</li>
         )}
         </ul>
-      </div>
-    );
+      </div>*/
+        let hosts;
+        if(this.props.hosts){
+          hosts = this.props.hosts.map(project => {
+            //console.log(project);
+            return (
+              <Host onDelete={this.deleteProject.bind(this)} key={host.current_name} host={host} />
+            );
+          });
+        }
+        return (
+          <div className="Hosts">
+            <h3>Existing Hosts</h3>
+            {hosts}
+          </div>
+        );
   }
+}
+
+Hosts.propTypes = {
+  hosts: React.PropTypes.array,
+  onDelete: React.PropTypes.func
 }
 
 export default Hosts;

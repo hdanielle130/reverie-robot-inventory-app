@@ -10,7 +10,7 @@ class Hosts extends Component {
   }
 
   componentDidMount() {
-    fetch('/api/hosts')
+    fetch('/reverie/hosts')
       .then(res => res.json())
       .then(hosts => this.setState({hosts}, () => console.log('Hosts fetched...', hosts)));
   }
