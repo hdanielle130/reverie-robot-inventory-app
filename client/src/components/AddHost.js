@@ -39,9 +39,9 @@ class AddHost extends Component {
       return <option key={intelligence_metric} value={intelligence_metric}>{intelligence_metric}</option>
     });
     return (
-      <div>
+      <div id="root">
         <h3>Create Host</h3>
-        <form onSubmit={this.handleSubmit.bind(this)}>
+        <form onSubmit={this.handleSubmit.bind(this)} method="/reverie/hosts/addHost">
           <div>
             <label>Host Name</label><br />
             <input type="text" ref="current_name" />
@@ -82,9 +82,9 @@ class AddHost extends Component {
   }
 }
 
-AddHost.propTypes = {
+/*AddHost.propTypes = {
   intelligence_metrics: React.PropTypes.array,
   addProject: React.PropTypes.func
-}
+}*/
 
 export default AddHost;

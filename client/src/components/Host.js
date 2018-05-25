@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import './hosts.css';
 
 class Host extends Component {
+
   deleteHost(id){
     this.props.onDelete(id);
   }
@@ -9,7 +9,7 @@ class Host extends Component {
   render() {
     return (
       <div>
-        <li className="Host">
+        <li>
             <strong>{this.props.host.current_name}</strong> 
         </li>
       </div>

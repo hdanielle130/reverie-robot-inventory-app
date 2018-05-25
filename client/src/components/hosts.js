@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Host from './Host';
-import './hosts.css';
 
 class Hosts extends Component {
   constructor() {
@@ -39,7 +38,7 @@ class Hosts extends Component {
           });
         }
         return (
-          <div className="Hosts">
+          <div>
             <h3>Existing Hosts</h3>
             {hosts}
           </div>
