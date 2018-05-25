@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import uuid from 'uuid';
 import logo from './logo.png';
 import './App.css';
 import Hosts from './components/Hosts';
+import AddHost from './components/AddHost';
 
 class App extends Component {
 
@@ -12,14 +14,18 @@ class App extends Component {
   constructor(){
     super();
     this.state = {
-      newHost:{}
+      newHost:{},
+      hosts: []
     }
   }
 
   static defaultProps = {
-    intelligence_metrics: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
+    intelligence_metrics: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],
   }
 
+  componentWillMount(){
+    this.getHosts();
+  }
   componentDidMount() {
     this.callApi()
       .then(res => this.setState({response: res.express}))
@@ -34,6 +40,11 @@ class App extends Component {
 
     return body;
   };
+
+  getHosts(){
+    this.setState({hosts: [
+    ]});
+  }
 
   handleAddHost(host){
     let hosts = this.state.hosts;
@@ -71,7 +82,13 @@ class App extends Component {
   render() {
     let intelligenceOptions = this.props.intelligence_metrics.map(intelligence_metric => {
       return <option key={intelligence_metric} value={intelligence_metric}>{intelligence_metric}</option>
-    });
+    }); 
+    let hosts = this.state.hosts.map(host_object => {
+      return <div>
+        <h3 key={host_object.id} value={host_object.current_name}>{host_object}</h3>
+      </div>
+    })
+
     return (
       <div className="App">
       <header className="App-header">
@@ -101,10 +118,14 @@ class App extends Component {
         </div> 
       </div>
       <div className="App">
-        <h3>Hosts</h3>
+        <AddHost addHost={this.handleAddHost.bind(this)} />
+        <Hosts hosts={this.state.hosts} onDelete={this.handleDeleteHost.bind(this)} />
+        <hr />
       </div>
-      <div className="App">
-        <h3>Create Host</h3>
+     
+      <p classname="App.intro">{this.state.response}</p>
+        <div className="App">
+        <h3>Update Existing Host</h3>
         <form onSubmit={this.handleSubmit.bind(this)} method="/reverie/hosts/addHost">
         <div>
           <label>Activation Date: </label>
@@ -136,9 +157,9 @@ class App extends Component {
           <input type="submit" value="Submit" />
           <br />
         </form>
+        </div>
       </div>
-      <p classname="App.intro">{this.state.response}</p>
-      </div>
+      
     );
   }
 }

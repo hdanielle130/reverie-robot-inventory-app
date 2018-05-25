@@ -51,7 +51,6 @@ reverieApp.post('/reverie/hosts/addHost', (req, res) => {
         if (err) {
             throw err;
         }
-        //db.collection.insert(res.json(host));
         res.json({hostId: host._id});
     });
 });

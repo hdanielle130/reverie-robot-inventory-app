@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import uuid from 'uuid';
-import './hosts.css';
 
 class AddHost extends Component {
   constructor(){
@@ -27,7 +26,7 @@ class AddHost extends Component {
         weight: this.refs.weight.value,
         intelligence_metric: this.refs.category.value
       }}, function(){
-        //console.log(this.state);
+        console.log(this.state);
         this.props.addHost(this.state.newHost);
       });
     }
@@ -39,36 +38,31 @@ class AddHost extends Component {
       return <option key={intelligence_metric} value={intelligence_metric}>{intelligence_metric}</option>
     });
     return (
-      <div id="root">
-        <h3>Create Host</h3>
+      <div className="App" id="addHost">
+        <h3>Create New Host</h3>
         <form onSubmit={this.handleSubmit.bind(this)} method="/reverie/hosts/addHost">
+        <div>
+          <label>Activation Date: </label>
+          <input ref="first_active" placeholder="MM/DD/YYYY"/>
+        </div>
           <div>
-            <label>Host Name</label><br />
-            <input type="text" ref="current_name" />
+            <label>First Name: </label>
+            <input ref="first_name" placeholder="Anthony"/>
+          </div>
+            <div>
+            <label>Last Name: </label>
+            <input ref="last_name" placeholder="Hopkins"/>
           </div>
           <div>
-            <button>Activate</button>
-            <select>
-                ["Activate", "Deactivate"]
-            </select>
-            if(this.select == "Activate" && this.ref.first_active == ""){
-                
-            }else if(this.select == "Activate"){
-                this.ref.first_active = new Date.now()
-            }else{
-                
-            }
+            <label>Height: </label>
+            <span><input type="text" placeholder="68.0" ref="current_name"/> inches</span>
           </div>
           <div>
-            <label>Height</label><br />
-            <input type="text" defaultValue='0.0' ref="current_name" inches/>
+            <label>Weight: </label>
+            <span><input type="text"  placeholder="180.0" ref="current_name"/> pounds</span>
           </div>
           <div>
-            <label>Weight</label><br />
-            <input type="text"  defaultValue='0.0' ref="current_name" pounds/>
-          </div>
-          <div>
-            <label>Intelligence Level</label><br />
+            <label>Intelligence Level: </label>
             <select ref="intelligence_metric">
               {intelligenceOptions}
             </select>

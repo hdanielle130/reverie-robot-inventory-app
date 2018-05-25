@@ -33,7 +33,7 @@ class Hosts extends Component {
           hosts = this.props.hosts.map(host => {
             //console.log(project);
             return (
-              <Host onDelete={this.deleteProject.bind(this)} key={host.current_name} host={host} />
+              <Host key={host.current_name} host={host} />
             );
           });
         }
