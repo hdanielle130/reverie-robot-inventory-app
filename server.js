@@ -62,7 +62,7 @@ reverieApp.put('/reverie/hosts/updateHost/:_id', (req, res) => {
         if (err) {
             throw err;
         }
-        res.json({hostId_updated: host._id});
+        res.json({host_updated: host._id});
     });
 });
 
@@ -72,7 +72,7 @@ reverieApp.delete('/reverie/hosts/:_id', (req, res) => {
         if (err) {
             throw err;
         }
-        res.json({hostId_deleted: host._id});
+        res.json({host_deleted: host._id});
     });
 });
 
