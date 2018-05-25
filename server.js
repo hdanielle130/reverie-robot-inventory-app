@@ -55,7 +55,7 @@ reverieApp.post('/reverie/hosts/addHost', (req, res) => {
     });
 });
 
-reverieApp.put('/reverie/hosts/:_id', (req, res) => {
+reverieApp.put('/reverie/hosts/updateHost/:_id', (req, res) => {
     var id = req.params._id;
     var host = req.body;
     Host.updateHost(id, host, {}, (err, host) => {

@@ -52,6 +52,13 @@ class App extends Component {
     this.setState({host:hosts});
   }
 
+  handleUpdateHost(id){
+    let hosts = this.state.hosts;
+    let index = hosts.findIndex(x => x.id === id);
+    hosts.splice(index, 1);
+    this.setState({hosts:hosts});
+  }
+
   handleDeleteHost(id){
     let hosts = this.state.hosts;
     let index = hosts.findIndex(x => x.id === id);
